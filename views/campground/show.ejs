@@ -1,0 +1,34 @@
+<%- include('../partials/header'); %>
+
+
+
+
+<div class="container">
+	<p> <%= campground.name %>  </p>
+	<img style="width: 40%;height: 30%" src=" <%= campground.img %>"><br><br>
+	<% if(currentUser && campground.author.id.equals(currentUser._id)){ %>
+	<a class="btn btn-outline-primary" href="/campGround/<%=campground._id%>/edit">EDIT</a><br><br>
+	<form action="/campGround/<%= campground._id%>?_method=DELETE" method="POST">
+		<button class="btn btn-outline-danger">DELETE</button>
+	</form>
+<% } %>
+	
+	
+<em>Submitted By</em> <strong><%= campground.author.username %></strong>
+<p> <%= campground.description %> </p>
+
+
+<%  campground.comments.forEach(function(data){  %>
+        <p>
+        	 <strong> <%= data.author.username %></strong> - <%= data.text %><a class="btn btn-sm btn-outline-primary ml-4" href="/campGround/<%=campground._id%>/comments/<%=data._id%>/edit">Edit</a>
+        	 <form action="/campGround/<%=campground._id%>/comments/<%=data._id%>?_method=DELETE" method="POST">
+        	 	<button class="btn btn-sm btn-outline-danger">Delete</button>	
+        	 </form>
+        </p>
+    
+<% }); %>
+<a href="/campGround/<%=campground._id%>/comments/new" class="btn btn-outline-success text-center">NEW COMMENTS</a>
+</div>
+
+
+<%- include('../partials/footer'); %>

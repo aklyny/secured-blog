@@ -1,0 +1,35 @@
+<%- include('partials/header'); %>
+
+
+<div class="container">
+<header class="jumbotron bg-success text-center mt-3 ">
+	<br>
+	<div class="container">
+	<h1 >YELP CAMP </h1>
+	<p>Plan a camping trip with ur free time</p>
+	<a href="#" class="btn btn-outline-light">Read More..</a>
+	<a href="/campGround/newCamp" class="btn btn-outline-light ml-3">Yelp!!  </a>
+</div>
+</header>
+<div class="row text-center" style="display: flex;flex-wrap: wrap;">
+<% campVal.forEach(function(data){ %>
+    <div class="col-lg-4 col-sm-6">
+    	<div class="img-thumbnail">
+	       <img  class="img-thumbnail"  src=" <%=	data.img %> ">
+	     <div class="caption">
+	   	     <h4>
+	   <%=	data.name %> </h4>
+	     </div>
+	     <p>
+	     	<a href="/campGround/<%= data._id %>" class="btn btn-outline-success">View More</a>
+	     </p>
+	   </div>
+	</div>   
+<% }); %>	
+</div>
+</div>
+
+
+
+
+<%- include('partials/footer'); %>
